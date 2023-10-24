@@ -7,22 +7,34 @@ import java.math.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String str = "Hello from project!";
-		System.out.println(str);
-//		int[] arr = new int[10];
-//		List<String> list = Arrays.asList("a", "b", "c", "d", "e");
-//		List<String> ans = new ArrayList<>();
-//		List<Integer> list2 = Arrays.asList(1, 2, 3, 4, 5);
-//		int[] arr = list2.stream().map(x -> x.intValue()).collect(Collectors.toList()).toArray();
-		
-//		for (int i = 0; i < list.size(); i++) {
-//		    ans.add("" + i + ": " + list.get(i));	
-//		}
+		sortDesc(1234598765);
 		
 	}
 	
 	
+//  Task: sortDesc	
+//	Your task is to make a function that can take any non-negative integer as an argument 
+//	and return it with its digits in descending order. 
+//	Essentially, rearrange the digits to create the highest possible number.
+//			Examples:
+//			Input: 42145 Output: 54421
+//			Input: 145263 Output: 654321
+//			Input: 123456789 Output: 987654321
+	  private static int sortDesc(final int num) {
+		  int[] arr = String.valueOf(num).chars().sorted().toArray();
+		  StringBuilder ans = new StringBuilder(arr.length);
+		  for (int i = 0; i < arr.length; i++) {
+			ans.append((char)arr[i]);
+		  }
+		  return Integer.valueOf(ans.reverse().toString());
+	  }
 	
+	private static int[] subArray(int[] a, int[] b) {
+		List<Integer> arrA = Arrays.stream(a).boxed().collect(Collectors.toList());
+		List<Integer> arrB = Arrays.stream(b).boxed().collect(Collectors.toList());
+		arrA.removeAll(arrB);
+		return arrA.stream().mapToInt(e -> e.intValue()).toArray();
+	}
 
 	private static int findIt(int[] a) {
 	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
